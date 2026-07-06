@@ -6,12 +6,15 @@
     <title>The Ridge | Luxury Boutique Villa Unawatuna</title>
     <meta name="description" content="Perched on a private rock hill, experience the ultimate elevated luxury in Unawatuna. Curated boutique hospitality, infinity pool, and pristine jungle isolation.">
     
+    <!-- Google Fonts: Luxury Serif & Modern Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tenor+Sans&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS Engine CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+    <!-- Alpine.js for interactive dynamic carousels & modal logic -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -19,16 +22,19 @@
             font-family: 'Inter', sans-serif;
             background-color: #FDFDFB;
             color: #2F3131;
+            -webkit-tap-highlight-color: transparent;
         }
         .font-serif { font-family: 'Cormorant Garamond', serif; }
         .font-luxury { font-family: 'Tenor Sans', sans-serif; }
     </style>
 </head>
-<body x-data="{ bookingModal: false, mobileMenu: false }">
+<body x-data="{ bookingModal: false, mobileMenu: false }" class="antialiased">
 
-    <nav class="fixed top-0 left-0 w-full z-40 bg-[#FDFDFB]/90 backdrop-blur-md border-b border-[#2F3131]/5 px-6 lg:px-16 py-4 flex justify-between items-center">
-        <a href="#" class="font-serif text-2xl tracking-[0.1em] uppercase font-semibold text-[#2F3131]">The Ridge</a>
+    <!-- Global Navigation Grid -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-[#FDFDFB]/95 backdrop-blur-md border-b border-[#2F3131]/5 px-4 sm:px-6 lg:px-16 py-3.5 lg:py-4 flex justify-between items-center shadow-xs">
+        <a href="#" class="font-serif text-xl sm:text-2xl tracking-[0.1em] uppercase font-semibold text-[#2F3131]">The Ridge</a>
         
+        <!-- Desktop Navigation Actions -->
         <div class="hidden lg:flex items-center gap-10 font-luxury text-xs tracking-[0.2em] uppercase">
             <a href="#about" class="hover:text-[#CBA35C] transition-colors">The Property</a>
             <a href="#rooms" class="hover:text-[#CBA35C] transition-colors">Sanctuaries</a>
@@ -43,91 +49,100 @@
             </button>
         </div>
 
-        <button @click="mobileMenu = true" class="lg:hidden text-[#2F3131] p-2 cursor-pointer">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <!-- Mobile Menu Navigation Trigger (Enhanced Tap Target) -->
+        <button @click="mobileMenu = true" class="lg:hidden text-[#2F3131] p-3 -mr-2 cursor-pointer touch-manipulation" aria-label="Open Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
     </nav>
 
+    <!-- Mobile Navigation Drawer -->
     <div x-show="mobileMenu" x-transition.opacity class="fixed inset-0 bg-[#2F3131]/60 backdrop-blur-sm z-50 lg:hidden" style="display: none;">
-        <div @click.away="mobileMenu = false" class="w-[80%] max-w-sm bg-[#FDFDFB] h-full p-8 flex flex-col justify-between">
+        <div @click.away="mobileMenu = false" class="w-[85%] max-w-sm bg-[#FDFDFB] h-full p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
             <div>
-                <div class="flex justify-between items-center mb-12">
-                    <span class="font-serif text-xl tracking-widest uppercase">The Ridge</span>
-                    <button @click="mobileMenu = false" class="text-sm tracking-widest font-luxury cursor-pointer">✕ CLOSE</button>
+                <div class="flex justify-between items-center mb-10">
+                    <span class="font-serif text-xl tracking-widest uppercase font-semibold">The Ridge</span>
+                    <button @click="mobileMenu = false" class="text-xs tracking-widest font-luxury p-2 cursor-pointer">✕ CLOSE</button>
                 </div>
-                <div class="flex flex-col gap-6 font-luxury text-sm tracking-widest uppercase">
-                    <a href="#about" @click="mobileMenu = false" class="py-2 border-b border-[#2F3131]/5">The Property</a>
-                    <a href="#rooms" @click="mobileMenu = false" class="py-2 border-b border-[#2F3131]/5">Sanctuaries</a>
-                    <a href="#pool" @click="mobileMenu = false" class="py-2 border-b border-[#2F3131]/5">Oasis</a>
-                    <a href="#location" @click="mobileMenu = false" class="py-2 border-b border-[#2F3131]/5">Location</a>
-                    <a href="#contact" @click="mobileMenu = false" class="py-2 border-b border-[#2F3131]/5">Connect</a>
+                <div class="flex flex-col gap-5 font-luxury text-sm tracking-widest uppercase">
+                    <a href="#about" @click="mobileMenu = false" class="py-3 border-b border-[#2F3131]/5 active:text-[#CBA35C]">The Property</a>
+                    <a href="#rooms" @click="mobileMenu = false" class="py-3 border-b border-[#2F3131]/5 active:text-[#CBA35C]">Sanctuaries</a>
+                    <a href="#pool" @click="mobileMenu = false" class="py-3 border-b border-[#2F3131]/5 active:text-[#CBA35C]">Oasis</a>
+                    <a href="#location" @click="mobileMenu = false" class="py-3 border-b border-[#2F3131]/5 active:text-[#CBA35C]">Location</a>
+                    <a href="#contact" @click="mobileMenu = false" class="py-3 border-b border-[#2F3131]/5 active:text-[#CBA35C]">Connect</a>
                 </div>
             </div>
-            <button @click="bookingModal = true; mobileMenu = false" class="w-full bg-[#CBA35C] text-[#2F3131] font-luxury text-xs tracking-widest uppercase py-4 font-semibold text-center cursor-pointer">
+            <button @click="bookingModal = true; mobileMenu = false" class="w-full bg-[#CBA35C] text-[#2F3131] font-luxury text-xs tracking-widest uppercase py-4 font-semibold text-center cursor-pointer rounded-xs">
                 Check Availability
             </button>
         </div>
     </div>
 
-    <header class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <!-- Section 1.0: Immersive Hero Area -->
+    <header class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16">
         <div class="absolute inset-0 bg-[#EAE0D5]">
-            <div class="absolute inset-0 bg-gradient-to-b from-[#2F3131]/40 via-transparent to-[#2F3131]/60 z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-[#2F3131]/50 via-[#2F3131]/20 to-[#2F3131]/70 z-10"></div>
             <div class="w-full h-full bg-cover bg-center scale-105 animate-[zoom_20s_infinite_alternate]" style="background-image: url('https://lh3.googleusercontent.com/d/1MOXiWo2ZPU14iNRgtcVihIyhkIdDdj6J');"></div>
         </div>
 
-        <div class="relative z-20 text-center px-4 max-w-4xl text-[#FDFDFB]">
-            <span class="inline-block font-luxury text-[11px] lg:text-xs tracking-[0.3em] uppercase bg-[#CBA35C] text-[#2F3131] font-bold px-4 py-1.5 rounded-sm mb-6 shadow-md">
+        <div class="relative z-20 text-center px-5 py-12 max-w-4xl text-[#FDFDFB]">
+            <!-- FIXED: Responsive optimized dynamic sizing badge -->
+            <span class="inline-block font-luxury text-[10px] sm:text-xs tracking-[0.25em] uppercase bg-[#CBA35C] text-[#2F3131] font-bold px-3.5 py-1.5 rounded-sm mb-5 shadow-md max-w-full break-words">
                 Boutique Luxury Sanctuary
             </span>
-            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-wide leading-tight mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+            <!-- FIXED: Deep text padding balances and fluid responsive text hierarchy -->
+            <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide leading-[1.2] sm:leading-tight mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
                 Perched High Above the Canopy
             </h1>
-            <p class="font-light text-sm md:text-base tracking-wide max-w-xl mx-auto text-[#FDFDFB] mb-10 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+            <p class="font-light text-xs sm:text-sm md:text-base tracking-wide max-w-xl mx-auto text-[#FDFDFB]/95 mb-8 sm:mb-10 leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]">
                 Discover a secluded structural hideaway nestled atop an exclusive stone knoll in Unawatuna. Designed effortlessly for couples, remote creators, and private family escapes.
             </p>
-            <div class="flex justify-center items-center">
-                <a href="#about" class="w-full sm:w-auto border border-[#FDFDFB] bg-[#2F3131]/20 backdrop-blur-md hover:bg-[#FDFDFB] hover:text-[#2F3131] text-[#FDFDFB] font-luxury text-xs tracking-[0.2em] uppercase px-12 py-4 transition-all duration-300 font-semibold shadow-lg">
+            <div class="flex justify-center items-center w-full">
+                <a href="#about" class="w-full sm:w-auto border border-[#FDFDFB] bg-[#2F3131]/30 backdrop-blur-md hover:bg-[#FDFDFB] hover:text-[#2F3131] text-[#FDFDFB] font-luxury text-xs tracking-[0.2em] uppercase px-8 sm:px-12 py-3.5 sm:py-4 transition-all duration-300 font-semibold shadow-lg">
                     Explore Estate
                 </a>
             </div>
         </div>
     </header>
 
-    <section id="about" class="py-20 lg:py-32 px-6 lg:px-24 bg-[#FDFDFB] grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <!-- Section 2.0: Asymmetric Editorial Split -->
+    <section id="about" class="py-16 lg:py-32 px-5 sm:px-8 lg:px-24 bg-[#FDFDFB] grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
         <div class="lg:col-span-5 order-2 lg:order-1">
-            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-4 block">The Hideaway</span>
-            <h2 class="font-serif text-3xl md:text-5xl text-[#2F3131] leading-[1.15] mb-6">
+            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-3 block">The Hideaway</span>
+            <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-[#2F3131] leading-[1.2] mb-5 font-semibold">
                 Architectural Seclusion Amidst Natural Bedrock.
             </h2>
-            <p class="text-sm text-[#2F3131]/70 leading-relaxed mb-8">
+            <p class="text-xs sm:text-sm text-[#2F3131]/75 leading-relaxed mb-6 sm:mb-8">
                 The Ridge frames the natural environment through raw micro-cement contours and high warm teak finishes. Tucked safely away on an elevated stone formation, the villa blends serene isolation with deep connectivity to the southern coast.
             </p>
-            <div class="border-t border-[#2F3131]/10 pt-8 grid grid-cols-2 gap-6">
+            <div class="border-t border-[#2F3131]/10 pt-6 grid grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                    <h4 class="font-serif text-2xl text-[#2F3131]">5 Guest</h4>
-                    <p class="font-luxury text-[10px] tracking-widest text-[#2F3131]/50 uppercase mt-1">Boutique Enclaves</p>
+                    <h4 class="font-serif text-xl sm:text-2xl text-[#2F3131] font-semibold">5 Guest</h4>
+                    <p class="font-luxury text-[9px] tracking-widest text-[#2F3131]/50 uppercase mt-1">Boutique Enclaves</p>
                 </div>
                 <div>
-                    <h4 class="font-serif text-2xl text-[#2F3131]">1 Family</h4>
-                    <p class="font-luxury text-[10px] tracking-widest text-[#2F3131]/50 uppercase mt-1">Spacious Pavilion</p>
+                    <h4 class="font-serif text-xl sm:text-2xl text-[#2F3131] font-semibold">1 Family</h4>
+                    <p class="font-luxury text-[9px] tracking-widest text-[#2F3131]/50 uppercase mt-1">Spacious Pavilion</p>
                 </div>
             </div>
         </div>
         <div class="lg:col-span-7 order-1 lg:order-2">
-            <div class="aspect-[16/10] bg-[#EAE0D5] relative overflow-hidden shadow-xl">
+            <!-- FIXED: Scaled fluid ratio box preventing mobile image cutoff -->
+            <div class="aspect-video sm:aspect-[16/10] bg-[#EAE0D5] relative overflow-hidden shadow-lg rounded-sm">
                 <img src="https://lh3.googleusercontent.com/d/1MOXiWo2ZPU14iNRgtcVihIyhkIdDdj6J" alt="Boutique Luxury Villa Structure" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
 
-    <section id="rooms" class="py-20 lg:py-32 bg-[#EAE0D5]/30 px-6 lg:px-24">
-        <div class="max-w-3xl mb-16">
-            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-4 block">Boutique Quarters</span>
-            <h2 class="font-serif text-3xl md:text-5xl text-[#2F3131]">The Sanctuaries</h2>
+    <!-- Section 3.0: The Accommodations Section -->
+    <section id="rooms" class="py-16 lg:py-32 bg-[#EAE0D5]/30 px-5 sm:px-8 lg:px-24">
+        <div class="max-w-3xl mb-10 sm:mb-16">
+            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-3 block">Boutique Quarters</span>
+            <h2 class="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#2F3131] font-semibold">The Sanctuaries</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group" 
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-6 lg:gap-8">
+            <!-- Room 1: Family Suite -->
+            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group shadow-xs rounded-sm" 
                  x-data="{ activeImg: 0, images: [
                     'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80',
                     'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80',
@@ -137,22 +152,24 @@
                     <template x-for="(img, idx) in images" :key="idx">
                         <img x-show="activeImg === idx" :src="img" alt="Family Suite Perspective" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
                     </template>
-                    <span class="absolute top-4 left-4 z-20 bg-[#2F3131] text-[#FDFDFB] font-luxury text-[9px] tracking-widest uppercase px-3 py-1">1 Unit Available</span>
-                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟨</button>
-                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟩</button>
+                    <span class="absolute top-3 left-3 z-20 bg-[#2F3131] text-[#FDFDFB] font-luxury text-[9px] tracking-widest uppercase px-2.5 py-1">1 Unit Available</span>
+                    <!-- Larger Mobile Touch Navigation Sliders -->
+                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟨</button>
+                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟩</button>
                 </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
+                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="font-serif text-2xl text-[#2F3131] mb-2">Dedicated Family Room</h3>
-                        <p class="text-xs text-[#2F3131]/60 leading-relaxed mb-6">Spacious multi-bed architectural suite optimized for family dynamics without compromising premium privacy layouts.</p>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#2F3131] mb-2 font-semibold">Dedicated Family Room</h3>
+                        <p class="text-xs sm:text-sm text-[#2F3131]/65 leading-relaxed mb-6">Spacious multi-bed architectural suite optimized for family dynamics without compromising premium privacy layouts.</p>
                     </div>
-                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3 transition-colors duration-300 cursor-pointer">
+                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3.5 transition-colors duration-300 cursor-pointer rounded-xs">
                         Check Availability
                     </button>
                 </div>
             </div>
 
-            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group"
+            <!-- Room 2: Deluxe Canopy Room -->
+            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group shadow-xs rounded-sm"
                  x-data="{ activeImg: 0, images: [
                     'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
                     'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?auto=format&fit=crop&w=800&q=80',
@@ -162,22 +179,23 @@
                     <template x-for="(img, idx) in images" :key="idx">
                         <img x-show="activeImg === idx" :src="img" alt="Deluxe Room Perspective" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
                     </template>
-                    <span class="absolute top-4 left-4 z-20 bg-[#CBA35C] text-[#2F3131] font-luxury text-[9px] tracking-widest uppercase px-3 py-1">5 Units Available</span>
-                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟨</button>
-                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟩</button>
+                    <span class="absolute top-3 left-3 z-20 bg-[#CBA35C] text-[#2F3131] font-luxury text-[9px] tracking-widest uppercase px-2.5 py-1 font-semibold">5 Units Available</span>
+                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟨</button>
+                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟩</button>
                 </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
+                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="font-serif text-2xl text-[#2F3131] mb-2">Deluxe Canopy Room</h3>
-                        <p class="text-xs text-[#2F3131]/60 leading-relaxed mb-6">Elevated suites pairing raw micro-cement textures with broad private balconies viewing the wild coastal canopies.</p>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#2F3131] mb-2 font-semibold">Deluxe Canopy Room</h3>
+                        <p class="text-xs sm:text-sm text-[#2F3131]/65 leading-relaxed mb-6">Elevated suites pairing raw micro-cement textures with broad private balconies viewing the wild coastal canopies.</p>
                     </div>
-                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3 transition-colors duration-300 cursor-pointer">
+                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3.5 transition-colors duration-300 cursor-pointer rounded-xs">
                         Check Availability
                     </button>
                 </div>
             </div>
 
-            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group"
+            <!-- Room 3: Standard Sanctuary -->
+            <div class="bg-[#FDFDFB] border border-[#2F3131]/5 flex flex-col justify-between group shadow-xs rounded-sm"
                  x-data="{ activeImg: 0, images: [
                     'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80',
                     'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
@@ -187,16 +205,16 @@
                     <template x-for="(img, idx) in images" :key="idx">
                         <img x-show="activeImg === idx" :src="img" alt="Standard Sanctuary Perspective" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
                     </template>
-                    <span class="absolute top-4 left-4 z-20 bg-[#2F3131]/40 text-[#FDFDFB] font-luxury text-[9px] tracking-widest uppercase px-3 py-1">Minimalist Core</span>
-                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟨</button>
-                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/40 text-white p-2 rounded-full text-xs hover:bg-[#2F3131] cursor-pointer">⟩</button>
+                    <span class="absolute top-3 left-3 z-20 bg-[#2F3131]/40 text-[#FDFDFB] font-luxury text-[9px] tracking-widest uppercase px-2.5 py-1">Minimalist Core</span>
+                    <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟨</button>
+                    <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟩</button>
                 </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
+                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
-                        <h3 class="font-serif text-2xl text-[#2F3131] mb-2">Standard Sanctuary</h3>
-                        <p class="text-xs text-[#2F3131]/60 leading-relaxed mb-6">Impeccably detailed intimate floorplans crafted for single business executives or couples looking for quiet isolation.</p>
+                        <h3 class="font-serif text-xl sm:text-2xl text-[#2F3131] mb-2 font-semibold">Standard Sanctuary</h3>
+                        <p class="text-xs sm:text-sm text-[#2F3131]/65 leading-relaxed mb-6">Impeccably detailed intimate floorplans crafted for single business executives or couples looking for quiet isolation.</p>
                     </div>
-                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3 transition-colors duration-300 cursor-pointer">
+                    <button @click="bookingModal = true" class="w-full text-center border border-[#2F3131] hover:bg-[#2F3131] hover:text-[#FDFDFB] font-luxury text-[10px] tracking-widest uppercase py-3.5 transition-colors duration-300 cursor-pointer rounded-xs">
                         Check Availability
                     </button>
                 </div>
@@ -204,35 +222,38 @@
         </div>
     </section>
 
-    <section id="pool" class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
+    <!-- Section 4.0: Tropical Pool Oasis Banner -->
+    <section id="pool" class="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/d/11P4GBhbzV0AOQOtg0BWDDLx3A3aaOTaJ');"></div>
-        <div class="absolute inset-0 bg-[#2F3131]/40 backdrop-blur-[2px]"></div>
+        <div class="absolute inset-0 bg-[#2F3131]/45 backdrop-blur-[1px]"></div>
         
-        <div class="relative z-10 text-center px-4 text-[#FDFDFB] max-w-2xl">
-            <span class="font-luxury text-xs tracking-[0.3em] uppercase text-[#CBA35C] mb-2 block">Ground-Level Serenity</span>
-            <h2 class="font-serif text-4xl md:text-5xl mb-6">The Tropical Infinity Pool</h2>
-            <p class="text-sm tracking-wide text-[#FDFDFB]/90 font-light leading-relaxed">
+        <div class="relative z-10 text-center px-5 text-[#FDFDFB] max-w-2xl">
+            <span class="font-luxury text-[11px] tracking-[0.3em] uppercase text-[#CBA35C] mb-2 block font-semibold">Ground-Level Serenity</span>
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl mb-5 font-semibold">The Tropical Infinity Pool</h2>
+            <p class="text-xs sm:text-sm tracking-wide text-[#FDFDFB]/90 font-light leading-relaxed max-w-md sm:max-w-xl mx-auto">
                 Seamlessly integrated into the natural bedrock profiles, our crystalline swimming sanctuary transitions into rich gardens, matching the wild visual spirit of Sri Lankan nature.
             </p>
         </div>
     </section>
 
-    <section id="location" class="py-20 lg:py-32 px-6 lg:px-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-[#FDFDFB]">
+    <!-- Section 5.0: Location Section -->
+    <section id="location" class="py-16 lg:py-32 px-5 sm:px-8 lg:px-24 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-[#FDFDFB]">
         <div class="lg:col-span-4">
-            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-4 block">The Neighborhood</span>
-            <h2 class="font-serif text-3xl md:text-4xl text-[#2F3131] mb-6">Isolated Peace, Moments From the Coast.</h2>
-            <p class="text-sm text-[#2F3131]/70 leading-relaxed mb-6">
+            <span class="font-luxury text-xs tracking-[0.25em] text-[#CBA35C] font-semibold mb-3 block">The Neighborhood</span>
+            <h2 class="font-serif text-2xl sm:text-4xl text-[#2F3131] mb-5 font-semibold">Isolated Peace, Moments From the Coast.</h2>
+            <p class="text-xs sm:text-sm text-[#2F3131]/70 leading-relaxed mb-6">
                 While standing high above the regional activity layer on your isolated peak, you are mere minutes away from critical cultural coordinates:
             </p>
-            <ul class="font-luxury text-[11px] tracking-widest uppercase text-[#2F3131]/80 space-y-3">
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#CBA35C]"></span> Unawatuna Shorelines — 5 Mins</li>
-                <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-[#CBA35C]"></span> Historical Galle Fort Complex — 15 Mins</li>
+            <ul class="font-luxury text-[10px] sm:text-[11px] tracking-widest uppercase text-[#2F3131]/80 space-y-3.5">
+                <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-[#CBA35C] rounded-full"></span> Unawatuna Shorelines — 5 Mins</li>
+                <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-[#CBA35C] rounded-full"></span> Historical Galle Fort Complex — 15 Mins</li>
             </ul>
         </div>
         
-        <div class="lg:col-span-8 w-full h-[450px] bg-[#EAE0D5] relative shadow-inner overflow-hidden rounded-sm">
+        <!-- FIXED: Native fluid map sizing preventing overflow breaks across dynamic portrait screens -->
+        <div class="lg:col-span-8 w-full aspect-square sm:aspect-video lg:h-[450px] bg-[#EAE0D5] relative shadow-inner overflow-hidden rounded-sm">
             <iframe 
-                class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 opacity-90" 
+                class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 opacity-95" 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15871.214068597394!2d80.24072234551187!3d6.02166548769395!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x3ae173bb6932f917%3A0x4a1cecbd31d3606a!2sUnawatuna!5e0!3m2!1sen!2slk!4v1710000000000!5m2!1sen!2slk" 
                 allowfullscreen="" 
                 loading="lazy"
@@ -241,96 +262,106 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 lg:py-28 bg-[#F5F2EB] px-6 lg:px-24 border-t border-[#2F3131]/5">
+    <!-- Section 6.0: High-Visibility Contact Grid -->
+    <section id="contact" class="py-16 lg:py-28 bg-[#F5F2EB] px-5 sm:px-8 lg:px-24 border-t border-[#2F3131]/5">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="font-luxury text-xs tracking-[0.3em] uppercase text-[#CBA35C] mb-3 block font-semibold">Bespoke Inquiries</span>
-                <h2 class="font-serif text-3xl md:text-5xl text-[#2F3131]">Connect With Us</h2>
-                <p class="text-xs md:text-sm text-[#2F3131]/60 mt-4 leading-relaxed font-light">Whether arranging curated excursions, private culinary requests, or general itinerary details, our reservations team is permanently available.</p>
+            <div class="text-center max-w-2xl mx-auto mb-12 lg:mb-16">
+                <span class="font-luxury text-xs tracking-[0.3em] uppercase text-[#CBA35C] mb-2 block font-semibold">Bespoke Inquiries</span>
+                <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-[#2F3131] font-semibold">Connect With Us</h2>
+                <p class="text-xs sm:text-sm text-[#2F3131]/60 mt-3 sm:mt-4 leading-relaxed font-light">Whether arranging curated excursions, private culinary requests, or general itinerary details, our reservations team is permanently available.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Optimized Grid Layout: Seamless block stacking logic on tiny screens -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 
-                <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-8 flex flex-col justify-between items-start group hover:border-[#25D366] transition-all duration-500 shadow-sm rounded-sm">
-                    <div class="w-12 h-12 rounded-full bg-[#25D366]/10 text-[#25D366] flex items-center justify-center transition-transform group-hover:scale-110 duration-300 mb-8">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.161 1.24 8.407 3.488 2.245 2.248 3.481 5.232 3.48 8.412-.004 6.56-5.342 11.907-11.892 11.907-1.996-.001-3.956-.5-5.69-1.448L0 24zm6.59-4.846c1.657.983 3.284 1.503 4.883 1.504 5.397 0 9.781-4.375 9.784-9.754.002-2.607-1.011-5.059-2.855-6.905C16.563 2.155 14.11 1.14 11.508 1.14c-5.399 0-9.783 4.376-9.786 9.755-.001 1.706.467 3.371 1.354 4.888l-.995 3.633 3.71-.973zm12.182-6.918c-.328-.164-1.94-.956-2.242-1.066-.302-.11-.522-.164-.74.164-.219.328-.847 1.066-1.039 1.284-.192.219-.384.246-.712.083-1.082-.541-1.859-.974-2.585-2.22-.192-.329.192-.305.549-1.02.055-.11.028-.206-.014-.288-.04-.082-.384-.926-.526-1.27-.138-.333-.278-.288-.384-.293-.1-.005-.214-.006-.329-.006-.115 0-.301.043-.459.219-.158.176-.602.589-.602 1.436 0 .847.616 1.664.702 1.774.086.11 1.212 1.85 2.936 2.593.41.177.73.282.979.362.412.13.787.112 1.084.068.331-.05 1.012-.414 1.15-.814.137-.4.137-.743.096-.815-.042-.071-.152-.11-.48-.274z"/></svg>
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-6 sm:p-8 flex flex-row sm:flex-col justify-between items-center sm:items-start group hover:border-[#25D366] transition-all duration-500 shadow-xs rounded-sm touch-manipulation">
+                    <div class="w-11 h-11 rounded-full bg-[#25D366]/10 text-[#25D366] flex items-center justify-center transition-transform group-hover:scale-105 duration-300 sm:mb-8">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.161 1.24 8.407 3.488 2.245 2.248 3.481 5.232 3.48 8.412-.004 6.56-5.342 11.907-11.892 11.907-1.996-.001-3.956-.5-5.69-1.448L0 24zm6.59-4.846c1.657.983 3.284 1.503 4.883 1.504 5.397 0 9.781-4.375 9.784-9.754.002-2.607-1.011-5.059-2.855-6.905C16.563 2.155 14.11 1.14c-5.399 0-9.783 4.376-9.786 9.755-.001 1.706.467 3.371 1.354 4.888l-.995 3.633 3.71-.973zm12.182-6.918c-.328-.164-1.94-.956-2.242-1.066-.302-.11-.522-.164-.74.164-.219.328-.847 1.066-1.039 1.284-.192.219-.384.246-.712.083-1.082-.541-1.859-.974-2.585-2.22-.192-.329.192-.305.549-1.02.055-.11.028-.206-.014-.288-.04-.082-.384-.926-.526-1.27-.138-.333-.278-.288-.384-.293-.1-.005-.214-.006-.329-.006-.115 0-.301.043-.459.219-.158.176-.602.589-.602 1.436 0 .847.616 1.664.702 1.774.086.11 1.212 1.85 2.936 2.593.41.177.73.282.979.362.412.13.787.112 1.084.068.331-.05 1.012-.414 1.15-.814.137-.4.137-.743.096-.815-.042-.071-.152-.11-.48-.274z"/></svg>
                     </div>
-                    <div>
-                        <span class="font-luxury text-[10px] tracking-[0.2em] uppercase text-[#25D366] font-semibold block mb-1">WhatsApp → Chat Now</span>
-                        <span class="font-serif text-lg text-[#2F3131] block">Instant Messaging</span>
-                    </div>
-                </a>
-
-                <a href="tel:+94771234567" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-8 flex flex-col justify-between items-start group hover:border-[#2F3131] transition-all duration-500 shadow-sm rounded-sm">
-                    <div class="w-12 h-12 rounded-full bg-[#2F3131]/10 text-[#2F3131] flex items-center justify-center transition-transform group-hover:scale-110 duration-300 mb-8">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.035 12.035 0 01-7.108-7.108c-.415-.44-.249-.926.138-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.11-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
-                    </div>
-                    <div>
-                        <span class="font-luxury text-[10px] tracking-[0.2em] uppercase text-[#2F3131]/60 font-semibold block mb-1">Mobile → Call Now</span>
-                        <span class="font-serif text-lg text-[#2F3131] block">+94 (077) 123 4567</span>
+                    <div class="text-right sm:text-left flex-1 pl-4 sm:pl-0">
+                        <span class="font-luxury text-[9px] tracking-[0.2em] uppercase text-[#25D366] font-semibold block mb-0.5">WhatsApp → Chat</span>
+                        <span class="font-serif text-base sm:text-lg text-[#2F3131] block font-medium">Instant Messaging</span>
                     </div>
                 </a>
 
-                <a href="mailto:concierge@theridgeunawatuna.com" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-8 flex flex-col justify-between items-start group hover:border-[#EA4335] transition-all duration-500 shadow-sm rounded-sm">
-                    <div class="w-12 h-12 rounded-full bg-[#EA4335]/10 text-[#EA4335] flex items-center justify-center transition-transform group-hover:scale-110 duration-300 mb-8">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0l-7.5-4.615a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                <!-- Mobile Call Card -->
+                <a href="tel:+94771234567" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-6 sm:p-8 flex flex-row sm:flex-col justify-between items-center sm:items-start group hover:border-[#2F3131] transition-all duration-500 shadow-xs rounded-sm touch-manipulation">
+                    <div class="w-11 h-11 rounded-full bg-[#2F3131]/10 text-[#2F3131] flex items-center justify-center transition-transform group-hover:scale-105 duration-300 sm:mb-8">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.387a12.035 12.035 0 01-7.108-7.108c-.415-.44-.249-.926.138-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.11-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
                     </div>
-                    <div>
-                        <span class="font-luxury text-[10px] tracking-[0.2em] uppercase text-[#EA4335] font-semibold block mb-1">Email → Send Message</span>
-                        <span class="font-serif text-[15px] text-[#2F3131] block tracking-wide truncate max-w-full">concierge@theridgeunawatuna.com</span>
+                    <div class="text-right sm:text-left flex-1 pl-4 sm:pl-0">
+                        <span class="font-luxury text-[9px] tracking-[0.2em] uppercase text-[#2F3131]/60 font-semibold block mb-0.5">Mobile → Call</span>
+                        <span class="font-serif text-base sm:text-lg text-[#2F3131] block font-medium">+94 77 123 4567</span>
                     </div>
                 </a>
 
-                <a href="https://facebook.com/theridgeunawatuna" target="_blank" rel="noopener noreferrer" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-8 flex flex-col justify-between items-start group hover:border-[#1877F2] transition-all duration-500 shadow-sm rounded-sm">
-                    <div class="w-12 h-12 rounded-full bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center transition-transform group-hover:scale-110 duration-300 mb-8">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                <!-- Email Card -->
+                <a href="mailto:concierge@theridgeunawatuna.com" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-6 sm:p-8 flex flex-row sm:flex-col justify-between items-center sm:items-start group hover:border-[#EA4335] transition-all duration-500 shadow-xs rounded-sm touch-manipulation">
+                    <div class="w-11 h-11 rounded-full bg-[#EA4335]/10 text-[#EA4335] flex items-center justify-center transition-transform group-hover:scale-105 duration-300 sm:mb-8">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0l-7.5-4.615a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
                     </div>
-                    <div>
-                        <span class="font-luxury text-[10px] tracking-[0.2em] uppercase text-[#1877F2] font-semibold block mb-1">Facebook → Visit Page</span>
-                        <span class="font-serif text-lg text-[#2F3131] block">Our Community</span>
+                    <div class="text-right sm:text-left flex-1 pl-4 sm:pl-0 truncate">
+                        <span class="font-luxury text-[9px] tracking-[0.2em] uppercase text-[#EA4335] font-semibold block mb-0.5">Email → Concierge</span>
+                        <span class="font-serif text-[14px] sm:text-base text-[#2F3131] block truncate max-w-full font-medium">Email Enquiries</span>
+                    </div>
+                </a>
+
+                <!-- Facebook Community Card -->
+                <a href="https://facebook.com/theridgeunawatuna" target="_blank" rel="noopener noreferrer" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-6 sm:p-8 flex flex-row sm:flex-col justify-between items-center sm:items-start group hover:border-[#1877F2] transition-all duration-500 shadow-xs rounded-sm touch-manipulation">
+                    <div class="w-11 h-11 rounded-full bg-[#1877F2]/10 text-[#1877F2] flex items-center justify-center transition-transform group-hover:scale-105 duration-300 sm:mb-8">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </div>
+                    <div class="text-right sm:text-left flex-1 pl-4 sm:pl-0">
+                        <span class="font-luxury text-[9px] tracking-[0.2em] uppercase text-[#1877F2] font-semibold block mb-0.5">Facebook → Connect</span>
+                        <span class="font-serif text-base sm:text-lg text-[#2F3131] block font-medium">Our Community</span>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-[#2F3131] text-[#FDFDFB]/60 py-16 px-6 lg:px-24 text-xs font-light tracking-wide border-t border-[#CBA35C]/20 mb-24 sm:mb-20">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <!-- Footer System -->
+    <footer class="bg-[#2F3131] text-[#FDFDFB]/60 py-12 px-5 sm:px-8 lg:px-24 text-xs font-light tracking-wide border-t border-[#CBA35C]/20 mb-28 sm:mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
             <div>
-                <h5 class="text-[#FDFDFB] font-serif text-lg tracking-widest uppercase mb-4">THE RIDGE</h5>
-                <p class="leading-relaxed max-w-xs">An architectural luxury escape perched over the canopy profiles of historic Unawatuna, Sri Lanka.</p>
+                <h5 class="text-[#FDFDFB] font-serif text-lg tracking-widest uppercase mb-3 font-semibold">THE RIDGE</h5>
+                <p class="leading-relaxed max-w-xs text-xs">An architectural luxury escape perched over the canopy profiles of historic Unawatuna, Sri Lanka.</p>
             </div>
             <div>
-                <h5 class="text-[#FDFDFB] font-luxury tracking-widest uppercase mb-4">Contact Enquiries</h5>
-                <p class="mb-2">WhatsApp: +94 (077) 123 4567</p>
-                <p>Email: concierge@theridgeunawatuna.com</p>
+                <h5 class="text-[#FDFDFB] font-luxury tracking-widest uppercase mb-3 text-[11px] font-semibold">Contact Enquiries</h5>
+                <p class="mb-1.5">WhatsApp: +94 77 123 4567</p>
+                <p class="truncate">Email: concierge@theridgeunawatuna.com</p>
             </div>
             <div>
-                <h5 class="text-[#FDFDFB] font-luxury tracking-widest uppercase mb-4">Verified Badges</h5>
-                <div class="flex gap-4 items-center opacity-80 mt-2">
-                    <span class="border border-[#FDFDFB]/20 px-3 py-1 text-[10px] tracking-widest uppercase text-[#CBA35C]">Superhost</span>
-                    <span class="border border-[#FDFDFB]/20 px-3 py-1 text-[10px] tracking-widest uppercase text-[#CBA35C]">Booking 9.6 Excellent</span>
+                <h5 class="text-[#FDFDFB] font-luxury tracking-widest uppercase mb-3 text-[11px] font-semibold">Verified Badges</h5>
+                <div class="flex gap-3 items-center opacity-90 mt-2">
+                    <span class="border border-[#FDFDFB]/20 px-2.5 py-1 text-[9px] tracking-widest uppercase text-[#CBA35C]">Superhost</span>
+                    <span class="border border-[#FDFDFB]/20 px-2.5 py-1 text-[9px] tracking-widest uppercase text-[#CBA35C]">Booking 9.6</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-3xl bg-[#2F3131] text-[#FDFDFB] shadow-2xl border border-[#CBA35C]/20 px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="text-center sm:text-left">
-            <p class="text-[9px] font-luxury tracking-[0.25em] text-[#CBA35C] uppercase">The Ridge Boutique Escape</p>
-            <p class="font-serif text-base italic text-[#FDFDFB] mt-0.5">Secure your calendar across premium secure portals</p>
+    <!-- Fixed Floating Booking Conversion Component Block (Mobile Thumb Optimization) -->
+    <div class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-3xl bg-[#2F3131] text-[#FDFDFB] shadow-2xl border border-[#CBA35C]/20 p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 rounded-xs">
+        <div class="text-center sm:text-left hidden sm:block">
+            <p class="text-[9px] font-luxury tracking-[0.25em] text-[#CBA35C] uppercase font-semibold">The Ridge Boutique Escape</p>
+            <p class="font-serif text-sm italic text-[#FDFDFB]/90 mt-0.5">Secure your calendar across premium booking channels</p>
         </div>
-        <button @click="bookingModal = true" class="w-full sm:w-auto bg-[#CBA35C] hover:bg-[#b08e4f] text-[#2F3131] font-luxury text-xs tracking-widest uppercase font-semibold py-3 px-8 transition-colors duration-300 cursor-pointer">
-            Check Availability
+        <button @click="bookingModal = true" class="w-full sm:w-auto bg-[#CBA35C] hover:bg-[#b08e4f] text-[#2F3131] font-luxury text-xs tracking-widest uppercase font-bold py-3.5 px-8 transition-colors duration-300 cursor-pointer rounded-xs shadow-md">
+            Check Availability Now
         </button>
     </div>
 
-    <div x-show="bookingModal" x-transition.opacity class="fixed inset-0 z-50 bg-[#2F3131]/95 backdrop-blur-md flex items-center justify-center p-4" style="display: none;">
-        <div @click.away="bookingModal = false" class="bg-[#FDFDFB] border border-[#EAE0D5] w-full max-w-2xl flex flex-col md:flex-row shadow-2xl overflow-hidden relative">
+    <!-- Multi-Channel Availability Modal -->
+    <div x-show="bookingModal" x-transition.opacity class="fixed inset-0 z-50 bg-[#2F3131]/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-4" style="display: none;">
+        <div @click.away="bookingModal = false" class="bg-[#FDFDFB] border border-[#EAE0D5] w-full max-w-2xl flex flex-col md:flex-row shadow-2xl overflow-y-auto max-h-[92vh] md:max-h-none rounded-xs relative">
             
-            <button @click="bookingModal = false" class="absolute top-4 right-4 z-30 bg-[#2F3131] text-[#FDFDFB] hover:text-[#CBA35C] text-xs font-luxury tracking-widest p-2 rounded-full cursor-pointer">✕</button>
+            <button @click="bookingModal = false" class="absolute top-3 right-3 z-30 bg-[#2F3131] text-[#FDFDFB] hover:text-[#CBA35C] text-xs font-luxury tracking-widest p-2.5 rounded-full cursor-pointer shadow-md">✕</button>
             
-            <div class="w-full md:w-1/2 bg-[#EAE0D5] relative min-h-[250px] md:min-h-full" x-data="{ 
+            <!-- Left Side: Dynamic Modal Showcase Image -->
+            <div class="w-full md:w-1/2 bg-[#EAE0D5] relative aspect-video md:aspect-auto min-h-[180px] md:min-h-full" x-data="{ 
                 activeSlide: 0,
                 slides: [
                     'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80',
@@ -341,66 +372,65 @@
                 <template x-for="(slide, index) in slides" :key="index">
                     <div x-show="activeSlide === index" 
                          x-transition:enter="transition ease-out duration-500" 
-                         x-transition:enter-start="opacity-0 scale-95" 
-                         x-transition:enter-end="opacity-100 scale-100" 
                          class="absolute inset-0 w-full h-full">
                         <img :src="slide" alt="Villa Preview Showcase" class="w-full h-full object-cover">
                     </div>
                 </template>
 
-                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
                     <template x-for="(slide, index) in slides" :key="index">
                         <button @click="activeSlide = index" 
                                 :class="activeSlide === index ? 'bg-[#CBA35C] w-4' : 'bg-[#FDFDFB]/60 w-2'" 
-                                class="h-2 rounded-full transition-all duration-300 cursor-pointer"></button>
+                                class="h-1.5 rounded-full transition-all duration-300 cursor-pointer"></button>
                     </template>
                 </div>
             </div>
 
-            <div class="w-full md:w-1/2 p-6 md:p-8 text-center flex flex-col justify-center">
-                <h3 class="font-serif text-2xl text-[#2F3131] mb-1">Book Your Stay</h3>
-                <p class="text-[11px] text-[#2F3131]/60 mb-6 leading-relaxed">Select your preferred platform to check allocations and flexible seasonal pricing instantly.</p>
+            <!-- Right Side: Enhanced Icon Conversion Channels -->
+            <div class="w-full md:w-1/2 p-5 sm:p-6 md:p-8 text-center flex flex-col justify-center">
+                <h3 class="font-serif text-xl sm:text-2xl text-[#2F3131] mb-1 font-semibold">Book Your Stay</h3>
+                <p class="text-[11px] text-[#2F3131]/60 mb-5 leading-relaxed max-w-xs mx-auto">Select your preferred platform to check allocations and flexible seasonal pricing instantly.</p>
                 
-                <div class="flex flex-col gap-3 font-luxury text-[11px] tracking-widest uppercase font-semibold">
+                <div class="flex flex-col gap-2.5 font-luxury text-[11px] tracking-widest uppercase font-semibold">
                     
-                    <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 border border-[#25D366] bg-[#25D366]/5 text-[#2F3131] py-3 px-4 hover:bg-[#25D366]/10 transition-all duration-300 rounded text-left">
-                        <span class="flex items-center justify-center w-7 h-7 bg-[#25D366] rounded text-white">
+                    <!-- WhatsApp Channel Inside Reservation Flow -->
+                    <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#25D366] bg-[#25D366]/5 text-[#2F3131] py-2.5 px-3.5 hover:bg-[#25D366]/10 transition-all duration-300 rounded text-left">
+                        <span class="flex items-center justify-center w-7 h-7 bg-[#25D366] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.161 1.24 8.407 3.488 2.245 2.248 3.481 5.232 3.48 8.412-.004 6.56-5.342 11.907-11.892 11.907-1.996-.001-3.956-.5-5.69-1.448L0 24zm6.59-4.846c1.657.983 3.284 1.503 4.883 1.504 5.397 0 9.781-4.375 9.784-9.754.002-2.607-1.011-5.059-2.855-6.905C16.563 2.155 14.11 1.14(11.508 1.14c-5.399 0-9.783 4.376-9.786 9.755-.001 1.706.467 3.371 1.354 4.888l-.995 3.633 3.71-.973zm12.182-6.918c-.328-.164-1.94-.956-2.242-1.066-.302-.11-.522-.164-.74.164-.219.328-.847 1.066-1.039 1.284-.192.219-.384.246-.712.083-1.082-.541-1.859-.974-2.585-2.22-.192-.329.192-.305.549-1.02.055-.11.028-.206-.014-.288-.04-.082-.384-.926-.526-1.27-.138-.333-.278-.288-.384-.293-.1-.005-.214-.006-.329-.006-.115 0-.301.043-.459.219-.158.176-.602.589-.602 1.436 0 .847.616 1.664.702 1.774.086.11 1.212 1.85 2.936 2.593.41.177.73.282.979.362.412.13.787.112 1.084.068.331-.05 1.012-.414 1.15-.814.137-.4.137-.743.096-.815-.042-.071-.152-.11-.48-.274z"/></svg>
                         </span>
                         <div class="flex-1">
-                            <span class="block text-xs text-[#2F3131]">Direct WhatsApp</span>
-                            <span class="block text-[8px] font-semibold text-[#25D366] tracking-normal capitalize mt-0.5">Chat with host directly</span>
+                            <span class="block text-xs text-[#2F3131] lowercase first-letter:uppercase font-medium">Direct WhatsApp</span>
                         </div>
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 border border-[#2F3131]/10 text-[#2F3131] py-3 px-4 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
-                        <span class="flex items-center justify-center w-7 h-7 bg-[#003580] rounded text-white font-serif font-bold text-sm tracking-normal">B.</span>
+                    <!-- Booking.com Row -->
+                    <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
+                        <span class="flex items-center justify-center w-7 h-7 bg-[#003580] rounded text-white font-serif font-bold text-sm tracking-normal flex-shrink-0">B.</span>
                         <div class="flex-1">
-                            <span class="block text-xs text-[#2F3131]">Booking.com</span>
-                            <span class="block text-[8px] font-light text-[#2F3131]/50 tracking-normal capitalize mt-0.5">Instant confirmation</span>
+                            <span class="block text-xs text-[#2F3131] lowercase first-letter:uppercase font-medium">Booking.com</span>
                         </div>
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <a href="https://www.airbnb.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 border border-[#2F3131]/10 text-[#2F3131] py-3 px-4 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
-                        <span class="flex items-center justify-center w-7 h-7 bg-[#FF5A5F] rounded text-white">
+                    <!-- Airbnb Row -->
+                    <a href="https://www.airbnb.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
+                        <span class="flex items-center justify-center w-7 h-7 bg-[#FF5A5F] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.1c-.2 0-.5.1-.7.3L3.5 11.2c-.4.4-.4 1.1 0 1.5.4.4 1.1.4 1.5 0L12 5.6l7 7.1c.4.4 1.1.4 1.5 0 .4-.4.4-1.1 0-1.5L12.7 2.4c-.2-.2-.5-.3-.7-.3zM12 8.5c-1.4 0-2.5 1.1-2.5 2.5 0 1.9 2.5 4.9 2.5 4.9s2.5-3 2.5-4.9c0-1.4-1.1-2.5-2.5-2.5zm0 3.7c-.7 0-1.2-.5-1.2-1.2s.5-1.2 1.2-1.2 1.2.5 1.2 1.2-.5 1.2-1.2 1.2z"/></svg>
                         </span>
                         <div class="flex-1">
-                            <span class="block text-xs text-[#2F3131]">Airbnb</span>
-                            <span class="block text-[8px] font-light text-[#2F3131]/50 tracking-normal capitalize mt-0.5">Superhost status</span>
+                            <span class="block text-xs text-[#2F3131] lowercase first-letter:uppercase font-medium">Airbnb</span>
                         </div>
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <a href="https://www.agoda.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 border border-[#2F3131]/10 text-[#2F3131] py-3 px-4 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
-                        <span class="flex items-center justify-center w-7 h-7 bg-[#873ea1] rounded text-white">
+                    <!-- Agoda Row -->
+                    <a href="https://www.agoda.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
+                        <span class="flex items-center justify-center w-7 h-7 bg-[#873ea1] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><circle cx="12" cy="7" r="2.5"/></svg>
                         </span>
                         <div class="flex-1">
-                            <span class="block text-xs text-[#2F3131]">Agoda</span>
-                            <span class="block text-[8px] font-light text-[#2F3131]/50 tracking-normal capitalize mt-0.5">Flexible cancellation</span>
+                            <span class="block text-xs text-[#2F3131] lowercase first-letter:uppercase font-medium">Agoda</span>
                         </div>
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
