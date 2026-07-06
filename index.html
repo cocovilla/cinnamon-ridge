@@ -49,7 +49,7 @@
             </button>
         </div>
 
-        <!-- Mobile Menu Navigation Trigger (Enhanced Tap Target) -->
+        <!-- Mobile Menu Navigation Trigger -->
         <button @click="mobileMenu = true" class="lg:hidden text-[#2F3131] p-3 -mr-2 cursor-pointer touch-manipulation" aria-label="Open Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -85,11 +85,9 @@
         </div>
 
         <div class="relative z-20 text-center px-5 py-12 max-w-4xl text-[#FDFDFB]">
-            <!-- FIXED: Responsive optimized dynamic sizing badge -->
             <span class="inline-block font-luxury text-[10px] sm:text-xs tracking-[0.25em] uppercase bg-[#CBA35C] text-[#2F3131] font-bold px-3.5 py-1.5 rounded-sm mb-5 shadow-md max-w-full break-words">
                 Boutique Luxury Sanctuary
             </span>
-            <!-- FIXED: Deep text padding balances and fluid responsive text hierarchy -->
             <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-wide leading-[1.2] sm:leading-tight mb-6 drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
                 Perched High Above the Canopy
             </h1>
@@ -126,7 +124,6 @@
             </div>
         </div>
         <div class="lg:col-span-7 order-1 lg:order-2">
-            <!-- FIXED: Scaled fluid ratio box preventing mobile image cutoff -->
             <div class="aspect-video sm:aspect-[16/10] bg-[#EAE0D5] relative overflow-hidden shadow-lg rounded-sm">
                 <img src="https://lh3.googleusercontent.com/d/1MOXiWo2ZPU14iNRgtcVihIyhkIdDdj6J" alt="Boutique Luxury Villa Structure" class="w-full h-full object-cover">
             </div>
@@ -153,7 +150,6 @@
                         <img x-show="activeImg === idx" :src="img" alt="Family Suite Perspective" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500">
                     </template>
                     <span class="absolute top-3 left-3 z-20 bg-[#2F3131] text-[#FDFDFB] font-luxury text-[9px] tracking-widest uppercase px-2.5 py-1">1 Unit Available</span>
-                    <!-- Larger Mobile Touch Navigation Sliders -->
                     <button @click="activeImg = (activeImg - 1 + images.length) % images.length" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟨</button>
                     <button @click="activeImg = (activeImg + 1) % images.length" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-[#2F3131]/60 text-white p-3 rounded-full text-xs hover:bg-[#2F3131] touch-manipulation">⟩</button>
                 </div>
@@ -250,10 +246,10 @@
             </ul>
         </div>
         
-        <!-- FIXED: Native fluid map sizing preventing overflow breaks across dynamic portrait screens -->
+        <!-- FIXED: Removed grayscale styles so map frame is completely vibrant and colorful across all devices -->
         <div class="lg:col-span-8 w-full aspect-square sm:aspect-video lg:h-[450px] bg-[#EAE0D5] relative shadow-inner overflow-hidden rounded-sm">
             <iframe 
-                class="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700 opacity-95" 
+                class="w-full h-full border-0 opacity-100 transition-all duration-700" 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15871.214068597394!2d80.24072234551187!3d6.02166548769395!2m3!1f0!2f0!3f0!3m2!1i1020!2i768!4f13.1!3m3!1m2!1s0x3ae173bb6932f917%3A0x4a1cecbd31d3606a!2sUnawatuna!5e0!3m2!1sen!2slk!4v1710000000000!5m2!1sen!2slk" 
                 allowfullscreen="" 
                 loading="lazy"
@@ -271,9 +267,7 @@
                 <p class="text-xs sm:text-sm text-[#2F3131]/60 mt-3 sm:mt-4 leading-relaxed font-light">Whether arranging curated excursions, private culinary requests, or general itinerary details, our reservations team is permanently available.</p>
             </div>
 
-            <!-- Optimized Grid Layout: Seamless block stacking logic on tiny screens -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                
                 <!-- WhatsApp Card -->
                 <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="bg-[#FDFDFB] border border-[#2F3131]/5 p-6 sm:p-8 flex flex-row sm:flex-col justify-between items-center sm:items-start group hover:border-[#25D366] transition-all duration-500 shadow-xs rounded-sm touch-manipulation">
                     <div class="w-11 h-11 rounded-full bg-[#25D366]/10 text-[#25D366] flex items-center justify-center transition-transform group-hover:scale-105 duration-300 sm:mb-8">
@@ -343,7 +337,7 @@
         </div>
     </footer>
 
-    <!-- Fixed Floating Booking Conversion Component Block (Mobile Thumb Optimization) -->
+    <!-- Fixed Floating Booking Conversion Component Block -->
     <div class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-3xl bg-[#2F3131] text-[#FDFDFB] shadow-2xl border border-[#CBA35C]/20 p-4 sm:px-6 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 rounded-xs">
         <div class="text-center sm:text-left hidden sm:block">
             <p class="text-[9px] font-luxury tracking-[0.25em] text-[#CBA35C] uppercase font-semibold">The Ridge Boutique Escape</p>
@@ -392,8 +386,7 @@
                 <p class="text-[11px] text-[#2F3131]/60 mb-5 leading-relaxed max-w-xs mx-auto">Select your preferred platform to check allocations and flexible seasonal pricing instantly.</p>
                 
                 <div class="flex flex-col gap-2.5 font-luxury text-[11px] tracking-widest uppercase font-semibold">
-                    
-                    <!-- WhatsApp Channel Inside Reservation Flow -->
+                    <!-- WhatsApp Channel -->
                     <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#25D366] bg-[#25D366]/5 text-[#2F3131] py-2.5 px-3.5 hover:bg-[#25D366]/10 transition-all duration-300 rounded text-left">
                         <span class="flex items-center justify-center w-7 h-7 bg-[#25D366] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.948 0c3.179.001 6.161 1.24 8.407 3.488 2.245 2.248 3.481 5.232 3.48 8.412-.004 6.56-5.342 11.907-11.892 11.907-1.996-.001-3.956-.5-5.69-1.448L0 24zm6.59-4.846c1.657.983 3.284 1.503 4.883 1.504 5.397 0 9.781-4.375 9.784-9.754.002-2.607-1.011-5.059-2.855-6.905C16.563 2.155 14.11 1.14(11.508 1.14c-5.399 0-9.783 4.376-9.786 9.755-.001 1.706.467 3.371 1.354 4.888l-.995 3.633 3.71-.973zm12.182-6.918c-.328-.164-1.94-.956-2.242-1.066-.302-.11-.522-.164-.74.164-.219.328-.847 1.066-1.039 1.284-.192.219-.384.246-.712.083-1.082-.541-1.859-.974-2.585-2.22-.192-.329.192-.305.549-1.02.055-.11.028-.206-.014-.288-.04-.082-.384-.926-.526-1.27-.138-.333-.278-.288-.384-.293-.1-.005-.214-.006-.329-.006-.115 0-.301.043-.459.219-.158.176-.602.589-.602 1.436 0 .847.616 1.664.702 1.774.086.11 1.212 1.85 2.936 2.593.41.177.73.282.979.362.412.13.787.112 1.084.068.331-.05 1.012-.414 1.15-.814.137-.4.137-.743.096-.815-.042-.071-.152-.11-.48-.274z"/></svg>
@@ -404,7 +397,7 @@
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <!-- Booking.com Row -->
+                    <!-- Booking.com -->
                     <a href="https://www.booking.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
                         <span class="flex items-center justify-center w-7 h-7 bg-[#003580] rounded text-white font-serif font-bold text-sm tracking-normal flex-shrink-0">B.</span>
                         <div class="flex-1">
@@ -413,7 +406,7 @@
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <!-- Airbnb Row -->
+                    <!-- Airbnb -->
                     <a href="https://www.airbnb.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
                         <span class="flex items-center justify-center w-7 h-7 bg-[#FF5A5F] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.1c-.2 0-.5.1-.7.3L3.5 11.2c-.4.4-.4 1.1 0 1.5.4.4 1.1.4 1.5 0L12 5.6l7 7.1c.4.4 1.1.4 1.5 0 .4-.4.4-1.1 0-1.5L12.7 2.4c-.2-.2-.5-.3-.7-.3zM12 8.5c-1.4 0-2.5 1.1-2.5 2.5 0 1.9 2.5 4.9 2.5 4.9s2.5-3 2.5-4.9c0-1.4-1.1-2.5-2.5-2.5zm0 3.7c-.7 0-1.2-.5-1.2-1.2s.5-1.2 1.2-1.2 1.2.5 1.2 1.2-.5 1.2-1.2 1.2z"/></svg>
@@ -424,7 +417,7 @@
                         <svg class="w-4 h-4 text-[#2F3131]/40" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                     </a>
 
-                    <!-- Agoda Row -->
+                    <!-- Agoda -->
                     <a href="https://www.agoda.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 border border-[#2F3131]/10 text-[#2F3131] py-2.5 px-3.5 hover:border-[#2F3131] hover:bg-[#2F3131]/5 transition-all duration-300 rounded text-left">
                         <span class="flex items-center justify-center w-7 h-7 bg-[#873ea1] rounded text-white flex-shrink-0">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="12" r="3"/><circle cx="12" cy="7" r="2.5"/></svg>
